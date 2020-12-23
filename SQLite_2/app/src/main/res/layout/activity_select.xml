@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:text="Select All"
+        android:layout_weight="1"
+        android:textSize="70px"
+        android:background="#858383"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:typeface="monospace"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        >
+        <Spinner
+            android:id="@+id/search_spiner"
+            android:layout_width="0px"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:padding="10px"
+            android:spinnerMode="dropdown"
+            android:layout_gravity="center"
+            />
+        <EditText
+            android:id="@+id/search_ET"
+            android:layout_width="0px"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="20px"
+            android:hint="검색어를 입력해주세요."
+            />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_student"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="9"
+        android:padding="10px"
+        />
+
+    <Button
+        android:id="@+id/btnMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go to Main"
+        android:padding="10px"
+        />
+
+</LinearLayout>
