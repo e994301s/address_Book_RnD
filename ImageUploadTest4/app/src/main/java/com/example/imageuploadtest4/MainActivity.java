@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode != 1 || resultCode != RESULT_OK) {
             return;
         }
@@ -79,10 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
             // 선택한 이미지 임시 저장
             String date = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss").format(new Date());
-            tempSelectFile = new File(Environment.getExternalStorageDirectory()+"/Pictures/", "temp_" + date + ".jpg");
+            tempSelectFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/", "temp_" + date + ".jpg");
             OutputStream out = new FileOutputStream(tempSelectFile);
             image.compress(Bitmap.CompressFormat.JPEG, 100, out);
-        } catch(IOException ioe) {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
 
