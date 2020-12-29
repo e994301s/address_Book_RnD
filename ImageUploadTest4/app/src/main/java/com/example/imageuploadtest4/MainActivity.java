@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
             in.close();
 
             // 선택한 이미지 임시 저장
-            String date = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss").format(new Date());
-            tempSelectFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/", "temp_" + date + ".jpg");
+            String date = new SimpleDateFormat("yyyyMMddHmsS").format(new Date());
+            tempSelectFile = new File("/data/data/com.example.imageuploadtest4/", "temp_" + date + ".jpg");
             OutputStream out = new FileOutputStream(tempSelectFile);
             image.compress(Bitmap.CompressFormat.JPEG, 100, out);
         } catch (IOException ioe) {

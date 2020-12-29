@@ -21,7 +21,7 @@ public class FileUploadUtils {
                 .build();
         Log.v("fileName", file.getName());
         Request request = new Request.Builder()
-                .url("http://192.168.0.128:8080/test/imagetest.jsp")
+                .url("http://192.168.0.4:8080/test/imagetest.jsp")
                 .post(requestBody)
                 .build();
 

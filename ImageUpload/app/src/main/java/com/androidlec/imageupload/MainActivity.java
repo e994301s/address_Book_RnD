@@ -133,94 +133,15 @@ public class MainActivity extends AppCompatActivity {
 
         //이미지의 이름 값
         String imgName = imgPath.substring(imgPath.lastIndexOf("/") + 1);
-        Toast.makeText(MainActivity.this, "이미지 이름 : " + imgName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "이미지 이름 : " + imgPath, Toast.LENGTH_SHORT).show();
         this.imageName = imgName;
 
         return imgPath;
     }//end of getImagePathToUri()
 
-    public void DoFileUpload(String apiUrl, String absolutePath) {
-        HttpFileUpload(apiUrl, "", absolutePath);
-    }
-
-    String lineEnd = "\r\n";
-    String twoHyphens = "--";
-    String boundary = "*****";
-
-    public void HttpFileUpload(String urlString, String params, String fileName) {
-        try {
-
-            FileInputStream mFileInputStream = new FileInputStream(fileName);
-            URL connectUrl = new URL(urlString);
-            Log.d("Test", "mFileInputStream  is " + mFileInputStream);
-
-            // HttpURLConnection 통신
-            HttpURLConnection conn = (HttpURLConnection) connectUrl.openConnection();
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
-            conn.setUseCaches(false);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Connection", "Keep-Alive");
-            conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-
-            // write data
-            DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-            dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"uploadedfile\";filename=\"" + fileName + "\"" + lineEnd);
-            dos.writeBytes(lineEnd);
-
-            int bytesAvailable = mFileInputStream.available();
-            int maxBufferSize = 1024;
-            int bufferSize = Math.min(bytesAvailable, maxBufferSize);
-
-            byte[] buffer = new byte[bufferSize];
-            int bytesRead = mFileInputStream.read(buffer, 0, bufferSize);
-
-            Log.d("Test", "image byte is " + bytesRead);
-
-            // read image
-            while (bytesRead > 0) {
-                dos.write(buffer, 0, bufferSize);
-                bytesAvailable = mFileInputStream.available();
-                bufferSize = Math.min(bytesAvailable, maxBufferSize);
-                bytesRead = mFileInputStream.read(buffer, 0, bufferSize);
-            }
-
-            dos.writeBytes(lineEnd);
-            dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-
-            // close streams
-            mFileInputStream.close();
-            dos.flush();
-            // finish upload...
-
-            // get response
-            Log.d("Test", "File is written");
-            InputStream inputStream = conn.getInputStream();
-
-
-
-            StringBuffer buffer1 = new StringBuffer();
-
-            for (int ch = 0; (ch = inputStream.read()) != -1; ) {
-                buffer1.append((char) ch);
-            }
-            inputStream.close();
-            Log.d("Test", buffer1.toString());
-
-
-        } catch (Exception e) {
-            Log.d("Test", "exception " + e.getMessage());
-            // TODO: handle exception
-        }
-    } // end of HttpFileUpload()
 
     private void doMultiPartRequest() {
-
-
-
         File f = new File(img_path);
-
         DoActualRequest(f);
     }
 
